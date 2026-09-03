@@ -251,8 +251,8 @@ st.markdown(
     <div class="executive-header">
         <div class="brand-title-wrap">
             <div>
-                <div class="brand-name">re:<span>HEALTH</span> 香港私人健康管理顧問</div>
-                <div class="brand-subtitle">AI HEALTH ADVISOR ｜ 專屬預防性醫療健康篩檢建議</div>
+                <div class="brand-name">re:<span>HEALTH</span> 香港仁和體檢健康管理顧問</div>
+                <div class="brand-subtitle">香港仁和體檢 ｜ AI 個人化健康評估顧問</div>
             </div>
             <div style="text-align: right; opacity: 0.85; font-size: 12px; font-weight: 500;">
                 Clinical Logic Consultation Standard<br>
