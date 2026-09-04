@@ -30,17 +30,17 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
     :root {
-    --re-dark-blue: #1E2D6D;
-    --re-primary-blue: #426B9D;
-    --re-accent-blue: #2477CD;
-    --re-light-blue: #EDF4FB;
+    --re-dark-green: #1E2D6D;
+    --re-primary-green: #426B9D;
+    --re-accent-mint: #EDF4FB;
+    --re-warm-white: #FAFDFB;
     --re-card-bg: #FFFFFF;
     --re-text-main: #243242;
     --re-text-muted: #6B7A90;
     --re-border: #D9E5F2;
     --re-card-shadow: 0 8px 20px rgba(66,107,157,0.12);
+    --re-gold: #B38F4D;
 }
-
     html, body, [class*="css"] {
         font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, sans-serif;
         color: var(--re-text-main);
@@ -51,7 +51,7 @@ st.markdown(
     }
 
     .executive-header {
-        background: linear-gradient(135deg, #06392B 0%, #426B9D 100%);
+        background: linear-gradient(135deg, #1E2D6D 0%, #426B9D 100%);
         border-radius: 18px;
         padding: 36px 40px;
         color: #FFFFFF;
@@ -74,7 +74,7 @@ st.markdown(
     }
 
     .brand-name span {
-        color: #64E7B8;
+        color: #A5C9FF;
     }
 
     .brand-subtitle {
