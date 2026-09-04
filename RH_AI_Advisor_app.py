@@ -815,7 +815,7 @@ if st.session_state.calculated:
 
     st.markdown("<div style='margin: 32px 0 26px 0; border-bottom: 2px solid #D9E5F2;'></div>", unsafe_allow_html=True)
 
-    action_col_left, action_col_right = st.columns([1.6, 2.4])
+    action_col_left, action_col_right = st.columns([2.4, 1.6])
     with action_col_left:
         st.markdown(
             f"""
@@ -826,27 +826,27 @@ if st.session_state.calculated:
             unsafe_allow_html=True,
         )
     with action_col_right:
-        act_c1, act_c2 = st.columns([2, 1.4])
+        act_c1, act_c2 = st.columns([1, 1])
         with act_c1:
             components.html(
                 """
                 <button onclick="window.print()" style="
-                    width: 100%;
-                    height: 38px;
+                    width: 240px;
+                    height: 42px;
                     background: #2477CD;
                     color: white;
                     border: none;
-                    border-radius: 8px;
+                    border-radius: 10px;
                     font-weight: 700;
                     font-size: 13px;
                     cursor: pointer;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    box-shadow: 0 2px 6px rgba(36, 119, 205, 0.2);
+                    box-shadow: 0 3px 8px rgba(36, 119, 205, 0.22);
                 ">🖨️ 匯出 PDF / 列印</button>
                 """,
-                height=42,
+                height=48,
             )
         with act_c2:
             st.button("➕ 開始全新評估", on_click=reset_assessment, use_container_width=True)
