@@ -826,7 +826,7 @@ if st.session_state.calculated:
             unsafe_allow_html=True,
         )
     with action_col_right:
-        act_c1, act_c2, act_c3 = st.columns([1.1, 1.1, 1.4])
+        act_c1, act_c2 = st.columns([2, 1.4])
         with act_c1:
             components.html(
                 """
@@ -844,31 +844,11 @@ if st.session_state.calculated:
                     align-items: center;
                     justify-content: center;
                     box-shadow: 0 2px 6px rgba(36, 119, 205, 0.2);
-                ">🖨️ 列印報告</button>
+                ">🖨️ 匯出 PDF / 列印</button>
                 """,
                 height=42,
             )
         with act_c2:
-            components.html(
-                """
-                <button onclick="window.print()" style="
-                    width: 100%;
-                    height: 38px;
-                    background: #FFFFFF;
-                    color: #2477CD;
-                    border: 1.5px solid #2477CD;
-                    border-radius: 8px;
-                    font-weight: 700;
-                    font-size: 13px;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                ">📥 下載 PDF</button>
-                """,
-                height=42,
-            )
-        with act_c3:
             st.button("➕ 開始全新評估", on_click=reset_assessment, use_container_width=True)
 
     # --------------------------------------------------------------------------
