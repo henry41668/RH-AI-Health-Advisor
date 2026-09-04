@@ -825,7 +825,7 @@ if st.session_state.calculated:
             """,
             unsafe_allow_html=True,
         )
-    with action_right:
+    with action_col_right:
         act_c1, act_c2, act_c3 = st.columns([1.1, 1.1, 1.4])
         with act_c1:
             components.html(
