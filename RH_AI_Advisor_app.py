@@ -447,7 +447,7 @@ st.markdown(
             </div>
             <div class="hero-badge-tag">
                 香港私家醫療標準<br>
-                100% 臨床確定性規則引擎
+                臨床確定性規則引擎
             </div>
         </div>
     </div>
