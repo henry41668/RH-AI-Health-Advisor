@@ -6,12 +6,12 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 try:
-    from constants import (
+    from RH_AI_Advisor_constants import (
         BASE_PACKAGE_DESCRIPTIONS,
         HUMAN_TRIGGER_MAP,
         QUESTIONNAIRE_OPTIONS,
     )
-    from recommendation_engine import (
+    from RH_AI_Advisor_recommendation_engine import (
         determine_health_risk,
         run_decision_engine,
     )
@@ -55,6 +55,8 @@ st.markdown(
         --card-bg: #FFFFFF;
         --card-shadow: 0 10px 30px rgba(30, 45, 109, 0.06);
         --card-shadow-hover: 0 14px 36px rgba(30, 45, 109, 0.12);
+        --whatsapp-green: #25D366;
+        --whatsapp-green-hover: #1EBE5D;
     }
 
     html, body, [class*="css"] {
@@ -317,6 +319,79 @@ st.markdown(
         border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
+    /* Call-To-Action (CTA) Section */
+    .cta-container {
+        background: #FFFFFF;
+        border: 1px solid var(--brand-border);
+        border-radius: 18px;
+        padding: 34px 38px;
+        margin-top: 26px;
+        margin-bottom: 22px;
+        box-shadow: var(--card-shadow);
+        text-align: center;
+    }
+    .cta-title {
+        font-size: 22px;
+        font-weight: 900;
+        color: var(--brand-dark);
+        margin-bottom: 10px;
+    }
+    .cta-desc {
+        font-size: 14.5px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: 26px;
+    }
+    .cta-btn-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 36px;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 12px;
+        text-decoration: none !important;
+        transition: all 0.25s ease;
+        min-width: 220px;
+        box-sizing: border-box;
+    }
+    .cta-btn-primary {
+        background-color: var(--brand-accent);
+        color: #FFFFFF !important;
+        box-shadow: 0 4px 14px rgba(36, 119, 205, 0.28);
+    }
+    .cta-btn-primary:hover {
+        background-color: var(--brand-dark);
+        box-shadow: 0 6px 18px rgba(30, 45, 109, 0.35);
+        transform: translateY(-2px);
+    }
+    .cta-btn-whatsapp {
+        background-color: var(--whatsapp-green);
+        color: #FFFFFF !important;
+        box-shadow: 0 4px 14px rgba(37, 211, 102, 0.28);
+    }
+    .cta-btn-whatsapp:hover {
+        background-color: var(--whatsapp-green-hover);
+        box-shadow: 0 6px 18px rgba(37, 211, 102, 0.38);
+        transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+        .cta-btn-group {
+            flex-direction: column;
+            gap: 14px;
+        }
+        .cta-btn {
+            width: 100%;
+        }
+    }
+
     /* Action Next Step Cards */
     .action-step-card {
         background: #FFFFFF;
@@ -340,7 +415,7 @@ st.markdown(
         .main {
             background-color: #FFFFFF !important;
         }
-        .premium-card, .addon-card-item, .action-step-card {
+        .premium-card, .addon-card-item, .action-step-card, .cta-container {
             box-shadow: none !important;
             border: 1px solid #D9E5F2 !important;
             break-inside: avoid;
@@ -750,7 +825,7 @@ if st.session_state.calculated:
             """,
             unsafe_allow_html=True,
         )
-    with action_col_right:
+    with action_right:
         act_c1, act_c2, act_c3 = st.columns([1.1, 1.1, 1.4])
         with act_c1:
             components.html(
@@ -982,6 +1057,30 @@ if st.session_state.calculated:
                         包含專科醫療團隊一對一報告解讀諮詢
                     </div>
                 </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # --------------------------------------------------------------------------
+    # CALL-TO-ACTION (CTA) SECTION
+    # --------------------------------------------------------------------------
+    st.markdown(
+        """
+        <div class="cta-container">
+            <h3 class="cta-title">立即開始您的健康管理旅程</h3>
+            <div class="cta-desc">
+                已準備好進一步了解您的檢查方案？<br>
+                立即預約或聯絡健康顧問，我們將協助安排最適合您的健康檢查服務。
+            </div>
+            <div class="cta-btn-group">
+                <a href="https://rehealth.com.hk/contact-us/#to_form" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-primary">
+                    立即預約
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=85257264497&text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E9%97%9C%E6%96%BC%E9%A6%99%E6%B8%AF%E4%BB%81%E5%92%8C%E9%AB%94%E6%AA%A2%E7%9A%84%E6%9C%8D%E5%8B%99%EF%BC%88T307%EF%BC%89" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-whatsapp">
+                    WhatsApp 查詢
+                </a>
             </div>
         </div>
         """,
