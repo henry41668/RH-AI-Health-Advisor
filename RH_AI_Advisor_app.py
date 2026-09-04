@@ -6,12 +6,12 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 try:
-    from RH_AI_Advisor_constants import (
+    from constants import (
         BASE_PACKAGE_DESCRIPTIONS,
         HUMAN_TRIGGER_MAP,
         QUESTIONNAIRE_OPTIONS,
     )
-    from RH_AI_Advisor_recommendation_engine import (
+    from recommendation_engine import (
         determine_health_risk,
         run_decision_engine,
     )
@@ -151,89 +151,6 @@ st.markdown(
         color: #EDF4FB;
         font-weight: 600;
         text-align: right;
-    }
-
-    /* Wizard Progress Bar */
-    .wizard-progress-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #FFFFFF;
-        border: 1px solid var(--brand-border);
-        border-radius: 16px;
-        padding: 18px 26px;
-        margin-bottom: 26px;
-        box-shadow: var(--card-shadow);
-    }
-    .progress-step-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        position: relative;
-        flex: 1;
-    }
-    .progress-step-item:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        right: 18px;
-        top: 50%;
-        width: calc(100% - 145px);
-        height: 2px;
-        background-color: var(--brand-border);
-        z-index: 1;
-        transition: background-color 0.3s ease;
-    }
-    .step-badge {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 800;
-        font-size: 13px;
-        z-index: 2;
-        transition: all 0.3s ease;
-    }
-    .step-title-text {
-        font-size: 13.5px;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-    }
-
-    /* Step Status Indicators */
-    .progress-step-item.pending .step-badge {
-        background-color: #FFFFFF;
-        border: 2px solid var(--brand-border);
-        color: var(--text-secondary);
-    }
-    .progress-step-item.pending .step-title-text {
-        color: var(--text-secondary);
-        font-weight: 500;
-    }
-
-    .progress-step-item.active .step-badge {
-        background-color: var(--brand-accent);
-        border: 2px solid var(--brand-accent);
-        color: #FFFFFF;
-        box-shadow: 0 0 0 5px rgba(36, 119, 205, 0.22);
-    }
-    .progress-step-item.active .step-title-text {
-        color: var(--brand-dark);
-        font-weight: 800;
-    }
-
-    .progress-step-item.completed:not(:last-child)::after {
-        background-color: var(--brand-primary);
-    }
-    .progress-step-item.completed .step-badge {
-        background-color: var(--brand-dark);
-        border: 2px solid var(--brand-dark);
-        color: #FFFFFF;
-    }
-    .progress-step-item.completed .step-title-text {
-        color: var(--brand-dark);
-        font-weight: 700;
     }
 
     /* Wizard Content Card */
@@ -417,7 +334,7 @@ st.markdown(
 
     /* Print Specific Cleanups */
     @media print {
-        header, footer, [data-testid="stToolbar"], .no-print, .wizard-progress-bar {
+        header, footer, [data-testid="stToolbar"], .no-print {
             display: none !important;
         }
         .main {
@@ -501,35 +418,28 @@ def reset_assessment():
 if not st.session_state.calculated:
     current_step = st.session_state.wizard_step
 
-    wizard_steps = [
-        (1, "Step 1 基本資料"),
-        (2, "Step 2 家族病史"),
-        (3, "Step 3 自覺症狀"),
-        (4, "Step 4 生活習慣"),
-        (5, "Step 5 確認資料"),
-    ]
+    step_labels = {
+        1: "Step 1 基本資料",
+        2: "Step 2 家族病史",
+        3: "Step 3 自覺症狀",
+        4: "Step 4 生活習慣",
+        5: "Step 5 確認資料",
+    }
 
-    # Progress Indicator
-    progress_html = '<div class="wizard-progress-bar no-print">'
-    for num, label in wizard_steps:
-        if current_step == num:
-            status_class = "active"
-            badge_content = str(num)
-        elif current_step > num:
-            status_class = "completed"
-            badge_content = "✓"
-        else:
-            status_class = "pending"
-            badge_content = str(num)
+    # --------------------------------------------------------------------------
+    # Streamlit-Native Step Indicator
+    # --------------------------------------------------------------------------
+    progress_ratio = current_step / 5
+    progress_percentage = int(progress_ratio * 100)
 
-        progress_html += f"""
-        <div class="progress-step-item {status_class}">
-            <div class="step-badge">{badge_content}</div>
-            <div class="step-title-text">{label}</div>
-        </div>
-        """
-    progress_html += "</div>"
-    st.markdown(progress_html, unsafe_allow_html=True)
+    prog_col1, prog_col2 = st.columns([4, 1])
+    with prog_col1:
+        st.write(f"### 步驟 {current_step} / 5 ： {step_labels[current_step]}")
+    with prog_col2:
+        st.metric(label="評估進度", value=f"{progress_percentage}%")
+
+    st.progress(progress_ratio)
+    st.write("")
 
     # --------------------------------------------------------------------------
     # Step 1: 基本資料 (Age, Gender) with Validation
@@ -787,7 +697,7 @@ if not st.session_state.calculated:
 
 
 # ==============================================================================
-# EXECUTIVE HEALTHCARE REPORT PAGE (PRESERVED LOGIC & NEW BLUE PALETTE)
+# EXECUTIVE HEALTHCARE REPORT PAGE
 # ==============================================================================
 
 if st.session_state.calculated:
@@ -807,7 +717,6 @@ if st.session_state.calculated:
 
     risk_info = determine_health_risk(sym_eval, fh_eval)
 
-    # Standardize low risk into re:HEALTH Blue palette
     if risk_info.get("en_level") == "Low Risk":
         risk_bg = "#EDF4FB"
         risk_border = "#D9E5F2"
@@ -831,7 +740,6 @@ if st.session_state.calculated:
 
     st.markdown("<div style='margin: 32px 0 26px 0; border-bottom: 2px solid #D9E5F2;'></div>", unsafe_allow_html=True)
 
-    # Top Utility Toolbar: Print Report, Download PDF, Start New Assessment
     action_col_left, action_col_right = st.columns([1.6, 2.4])
     with action_col_left:
         st.markdown(
