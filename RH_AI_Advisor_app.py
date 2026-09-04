@@ -147,12 +147,19 @@ st.markdown(
     .hero-badge-tag {
         font-size: 12px;
         background: rgba(255, 255, 255, 0.14);
-        padding: 6px 14px;
+        padding: 8px 16px;
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.22);
         color: #EDF4FB;
         font-weight: 600;
-        text-align: right;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        text-align: center;
+        line-height: 1.6;
     }
 
     /* Wizard Content Card */
