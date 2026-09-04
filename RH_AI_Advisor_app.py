@@ -829,28 +829,19 @@ if st.session_state.calculated:
         act_c1, act_c2 = st.columns([1, 1])
 
         with act_c1:
-            components.html(
-                """
-                <button onclick="window.print()" style="
-                    width: 100%;
-                    height: 42px;
-                    background: #2477CD;
-                    color: white;
-                    border: none;
-                    border-radius: 10px;
-                    font-weight: 700;
-                    font-size: 13px;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    box-shadow: 0 3px 8px rgba(36, 119, 205, 0.22);
-                ">
-                    📄 匯出報告
-                </button>
-                """,
-                height=48,
-            )
+            if st.button(
+                "📄 匯出報告",
+                use_container_width=True,
+                type="primary"
+            ):
+                st.components.v1.html(
+                    """
+                    <script>
+                    window.print();
+                    </script>
+                    """,
+                    height=0,
+                )
 
         with act_c2:
             st.button(
@@ -858,8 +849,7 @@ if st.session_state.calculated:
                 on_click=reset_assessment,
                 use_container_width=True,
                 type="secondary"
-        )
-
+            )
     # --------------------------------------------------------------------------
     # 1. Health Risk Summary
     # --------------------------------------------------------------------------
