@@ -30,17 +30,16 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
     :root {
-        --re-dark-green: #064433;
-        --re-primary-green: #007A55;
-        --re-accent-mint: #E8F5F1;
-        --re-warm-white: #FAFDFB;
-        --re-card-bg: #FFFFFF;
-        --re-text-main: #1C2D27;
-        --re-text-muted: #536B63;
-        --re-gold: #B38F4D;
-        --re-border: #DDEBE5;
-        --re-card-shadow: 0 10px 25px rgba(6, 68, 51, 0.05);
-    }
+    --re-dark-blue: #1E2D6D;
+    --re-primary-blue: #426B9D;
+    --re-accent-blue: #2477CD;
+    --re-light-blue: #EDF4FB;
+    --re-card-bg: #FFFFFF;
+    --re-text-main: #243242;
+    --re-text-muted: #6B7A90;
+    --re-border: #D9E5F2;
+    --re-card-shadow: 0 8px 20px rgba(66,107,157,0.12);
+}
 
     html, body, [class*="css"] {
         font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, sans-serif;
@@ -52,7 +51,7 @@ st.markdown(
     }
 
     .executive-header {
-        background: linear-gradient(135deg, #06392B 0%, #007A55 100%);
+        background: linear-gradient(135deg, #06392B 0%, #426B9D 100%);
         border-radius: 18px;
         padding: 36px 40px;
         color: #FFFFFF;
@@ -234,7 +233,7 @@ st.markdown(
         .cost-summary-box {
             background: #F4FAF7 !important;
             color: #000 !important;
-            border: 2px solid #007A55 !important;
+            border: 2px solid #426B9D !important;
         }
         .cost-summary-box * {
             color: #000 !important;
@@ -390,7 +389,7 @@ if st.session_state.calculated:
                 <button onclick="window.print()" style="
                     width: 100%;
                     height: 38px;
-                    background: #007A55;
+                    background: #426B9D;
                     color: white;
                     border: none;
                     border-radius: 8px;
@@ -411,8 +410,8 @@ if st.session_state.calculated:
                     width: 100%;
                     height: 38px;
                     background: #FFFFFF;
-                    color: #007A55;
-                    border: 1.5px solid #007A55;
+                    color: #426B9D;
+                    border: 1.5px solid #426B9D;
                     border-radius: 8px;
                     font-weight: 700;
                     font-size: 13px;
@@ -480,7 +479,7 @@ if st.session_state.calculated:
                     <div style="font-size: 26px; font-weight: 800; color: var(--re-dark-green); margin-bottom: 6px;">
                         {results['base_package_name']}
                     </div>
-                    <div style="display: inline-block; background: #E8F5F1; color: var(--re-primary-green); font-size: 12.5px; font-weight: 700; padding: 3px 12px; border-radius: 6px; margin-bottom: 14px;">
+                    <div style="display: inline-block; background: #EDF4FB; color: var(--re-primary-green); font-size: 12.5px; font-weight: 700; padding: 3px 12px; border-radius: 6px; margin-bottom: 14px;">
                         🎯 {base_meta['suitable']}
                     </div>
                 </div>
