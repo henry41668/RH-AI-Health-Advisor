@@ -201,12 +201,12 @@ st.markdown(
     }
 
     .cost-summary-box {
-        background: linear-gradient(135deg, #06392B 0%, #006043 100%);
-        border-radius: 18px;
-        padding: 32px 36px;
-        color: #FFFFFF;
-        box-shadow: 0 14px 30px rgba(6, 57, 43, 0.22);
-    }
+    background: linear-gradient(135deg, #1E2D6D 0%, #426B9D 100%);
+    border-radius: 18px;
+    padding: 32px 36px;
+    color: #FFFFFF;
+    box-shadow: 0 14px 30px rgba(66,107,157,0.22);
+}
 
     .action-step-card {
         background: #FFFFFF;
@@ -581,7 +581,7 @@ if st.session_state.calculated:
         <div class="cost-summary-box">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
                 <div style="flex: 1; min-width: 260px;">
-                    <div style="font-size: 12.5px; font-weight: 700; color: #64E7B8; letter-spacing: 1px; text-transform: uppercase;">
+                    <div style="font-size: 12.5px; font-weight: 700; color: #A5C9FF; letter-spacing: 1px; text-transform: uppercase;">
                         TOTAL ESTIMATED INVESTMENT
                     </div>
                     <div style="font-size: 22px; font-weight: 800; margin-top: 4px; margin-bottom: 12px;">
@@ -597,7 +597,7 @@ if st.session_state.calculated:
                         預估總費用 (TOTAL COST)
                     </div>
                     <div style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px; margin-top: 4px;">
-                        <span style="font-size: 20px; font-weight: 700; color: #64E7B8;">HKD</span>
+                        <span style="font-size: 20px; font-weight: 700; color: #A5C9FF;">HKD</span>
                         <span class="price-num-highlight">{results['total_cost']:,}</span>
                     </div>
                     <div style="font-size: 11.5px; color: rgba(255, 255, 255, 0.7); margin-top: 4px;">
