@@ -826,30 +826,40 @@ if st.session_state.calculated:
             unsafe_allow_html=True,
         )
     with action_col_right:
-        act_c1, act_c2 = st.columns([1, 1])
-        with act_c1:
-            components.html(
-                """
-                <button onclick="window.print()" style="
-                    width: 240px;
-                    height: 42px;
-                    background: #2477CD;
-                    color: white;
-                    border: none;
-                    border-radius: 10px;
-                    font-weight: 700;
-                    font-size: 13px;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    box-shadow: 0 3px 8px rgba(36, 119, 205, 0.22);
-                ">🖨️ 匯出 PDF / 列印</button>
-                """,
-                height=48,
-            )
-        with act_c2:
-            st.button("➕ 開始全新評估", on_click=reset_assessment, use_container_width=True)
+    act_c1, act_c2 = st.columns([1, 1])
+
+    with act_c1:
+        components.html(
+            """
+            <button onclick="window.print()" style="
+                width: 100%;
+                height: 42px;
+                background: #2477CD;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                font-weight: 700;
+                font-size: 13px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 3px 8px rgba(36, 119, 205, 0.22);
+                transition: all 0.25s ease;
+            ">
+                🖨️ 匯出報告
+            </button>
+            """,
+            height=48,
+        )
+
+    with act_c2:
+        st.button(
+            "➕ 開始全新評估",
+            on_click=reset_assessment,
+            use_container_width=True,
+            type="secondary"
+        )
 
     # --------------------------------------------------------------------------
     # 1. Health Risk Summary
